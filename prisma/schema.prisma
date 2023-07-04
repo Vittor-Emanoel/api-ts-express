@@ -1,0 +1,39 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Users {
+  name     String
+  email    String @unique
+  password String
+  role     String @default("ADMIN")
+
+  @@map("users")
+}
+
+model Congregations {
+  id       String    @id @default(uuid())
+  name     String
+  shepherd String
+  Members  Members[]
+
+  @@map("congregations")
+}
+
+model Members {
+  id               String        @id @default(uuid())
+  name             String
+  phone            String
+  congregation     Congregations @relation(fields: [congregations_Id], references: [id])
+  congregations_Id String
+
+  @@map("members")
+}
