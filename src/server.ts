@@ -3,7 +3,7 @@ import { PrismaClient } from "@prisma/client";
 import { hash, compare } from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { z } from "zod";
-import router from "./routes";
+import routes from "./routes";
 
 const prisma = new PrismaClient();
 
@@ -12,7 +12,7 @@ const salt = 12;
 
 const app = express();
 app.use(express.json());
-app.use(router);
+app.use(routes);
 
 interface AuthenticatedRequest extends Request {
   user?: any; //

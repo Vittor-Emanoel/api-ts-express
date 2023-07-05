@@ -1,8 +1,0 @@
-import { Router } from "express";
-import usersRouter from "./users.route";
-
-const router = Router();
-
-router.use("/register", usersRouter);
-
-export default router;
