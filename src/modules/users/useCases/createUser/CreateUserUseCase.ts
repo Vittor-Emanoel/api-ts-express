@@ -1,11 +1,6 @@
 import { prisma } from "../../../../database/lib/prisma";
 import { hash } from "bcryptjs";
-
-interface ICreateUser {
-  name: string;
-  email: string;
-  password: string;
-}
+import { ICreateUser } from "./CreateUserDTO";
 
 export class CreateUserUseCase {
   async execute({ name, email, password }: ICreateUser) {
